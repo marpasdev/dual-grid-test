@@ -1,0 +1,22 @@
+# Ignore build output
+bin/
+obj/
+*.user
+*.suo
+*.cache
+*.log
+
+# VS specific
+.vscode/
+.vs/
+*.userprefs
+
+# NuGet packages
+*.nupkg
+packages/
+
+# Others
+*.DS_Store
+*.exe
+*.dll
+*.pdb
