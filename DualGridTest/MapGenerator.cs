@@ -129,6 +129,16 @@ namespace DualGridTest
                         rotation = MathHelper.Pi / 2;
                         // if n and w are same type and their type > this type
                         //draw convex instead
+                        if (x > 0 && y > 0)
+                        {
+                            if ((int)grid.Tiles[x - 1, y] > (int)type
+                                && (int)grid.Tiles[x, y - 1] > (int)type
+                                && grid.Tiles[x - 1, y] == grid.Tiles[x, y - 1])
+                            {
+                                texture = textures[(int)type].Convex;
+                                rotation = MathHelper.Pi;
+                            }
+                        }
                     }
                     else if (n && w && !nw)
                     {
@@ -155,7 +165,7 @@ namespace DualGridTest
                          spriteBatch.Draw(texture, position + new Vector2(-8f, -8f) + 8 * Vector2.One, null, Color.White,
                         rotation, 8 * Vector2.One, 1f, SpriteEffects.None, 0f);*/
 
-                        renderGrid.UpperLeft[x, y] = new RenderTile(texture, rotation);
+                        renderGrid.UpperLeft[x, y] = new RenderTile(texture, rotation, (float)type);
                     }
 
                     #endregion
@@ -175,6 +185,18 @@ namespace DualGridTest
                     else if (!n && ne && !e)
                     {
                         texture = textures[(int)type].Joint;
+
+                        if (x < grid.Width - 1 && y > 0)
+                        {
+                            if ((int)grid.Tiles[x + 1, y] > (int)type
+                                && (int)grid.Tiles[x, y - 1] > (int)type
+                                && grid.Tiles[x + 1, y] == grid.Tiles[x, y - 1])
+                            {
+                                texture = textures[(int)type].Convex;
+                                rotation = MathHelper.Pi * 1.5f;
+                            }
+                        }
+
                     }
                     else if (!n && !ne && e)
                     {
@@ -204,7 +226,7 @@ namespace DualGridTest
                          /*spriteBatch.Draw(texture, position + new Vector2(8, -8) + 8 * Vector2.One, null, Color.White,
                         rotation, 8 * Vector2.One, 1f, SpriteEffects.None, 0f);*/
                         
-                        renderGrid.UpperRight[x, y] = new RenderTile(texture, rotation);
+                        renderGrid.UpperRight[x, y] = new RenderTile(texture, rotation, (float)type);
                     }
                     #endregion
 
@@ -225,6 +247,17 @@ namespace DualGridTest
                     else if (!w && sw && !s)
                     {
                         texture = textures[(int)type].Joint;
+
+                        if (x > 0 && y < grid.Height - 1)
+                        {
+                            if ((int)grid.Tiles[x - 1, y] > (int)type
+                                && (int)grid.Tiles[x, y + 1] > (int)type
+                                && grid.Tiles[x - 1, y] == grid.Tiles[x, y + 1])
+                            {
+                                texture = textures[(int)type].Convex;
+                                rotation = MathHelper.PiOver2;
+                            }
+                        }
                     }
                     else if (!w && !sw && s)
                     {
@@ -255,7 +288,7 @@ namespace DualGridTest
                         /* spriteBatch.Draw(texture, position + new Vector2(-8, 8) + 8 * Vector2.One, null, Color.White,
                         rotation, 8 * Vector2.One, 1f, SpriteEffects.None, 0f);*/
 
-                        renderGrid.LowerLeft[x, y] = new RenderTile(texture, rotation);
+                        renderGrid.LowerLeft[x, y] = new RenderTile(texture, rotation, (float)type);
                     }
                     #endregion
 
@@ -275,6 +308,17 @@ namespace DualGridTest
                     {
                         texture = textures[(int)type].Joint;
                         rotation = MathHelper.PiOver2;
+
+                        if (x < grid.Width - 1 && y < grid.Height - 1)
+                        {
+                            if ((int)grid.Tiles[x + 1, y] > (int)type
+                                && (int)grid.Tiles[x, y + 1] > (int)type
+                                && grid.Tiles[x + 1, y] == grid.Tiles[x, y + 1])
+                            {
+                                texture = textures[(int)type].Convex;
+                                rotation = 0f;
+                            }
+                        }
                     }
                     else if (!s && !se && e)
                     {
@@ -306,7 +350,7 @@ namespace DualGridTest
                          /*spriteBatch.Draw(texture, position + new Vector2(8, 8) + 8 * Vector2.One, null, Color.White,
                          rotation, 8 * Vector2.One, 1f, SpriteEffects.None, 0f);*/
 
-                        renderGrid.LowerRight[x, y] = new RenderTile(texture, rotation);
+                        renderGrid.LowerRight[x, y] = new RenderTile(texture, rotation, (float)type);
                     }
                     #endregion
 

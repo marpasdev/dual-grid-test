@@ -11,11 +11,13 @@ namespace DualGridTest
     {
         public Texture2D Texture;
         public float Rotation;
+        public float Priority;
 
-        public RenderTile(Texture2D texture, float rotation)
+        public RenderTile(Texture2D texture, float rotation, float priority = 0)
         {
             Texture = texture;
             Rotation = rotation;
+            Priority = priority;
         }
     }
 }

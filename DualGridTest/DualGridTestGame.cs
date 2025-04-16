@@ -18,6 +18,9 @@ namespace DualGridTest
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            graphics.PreferredBackBufferWidth = 1280;
+            graphics.PreferredBackBufferHeight = 720;
+            graphics.ApplyChanges();
             IsMouseVisible = true;
         }
 
@@ -69,7 +72,7 @@ namespace DualGridTest
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp,
-                null, null, null, Matrix.CreateScale(2.0f));
+                null, null, null, Matrix.CreateScale(4.0f));
 
             renderGrid.Draw(spriteBatch);
 

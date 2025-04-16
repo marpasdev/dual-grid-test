@@ -33,22 +33,23 @@ namespace DualGridTest
                     Vector2 basePosition = new Vector2(x, y) * Size;
                     Vector2 origin = new Vector2(Size, Size) / 2;
                     Vector2 offset;
+                    float priority = UpperLeft[x, y].Priority / 1000;
 
                     offset = new Vector2(-8, -8);
                     spriteBatch.Draw(UpperLeft[x, y].Texture, basePosition + offset + origin,
-                        null, Color.White, UpperLeft[x, y].Rotation, origin, 1f, SpriteEffects.None, 0f);
+                        null, Color.White, UpperLeft[x, y].Rotation, origin, 1f, SpriteEffects.None, priority);
 
                     offset = new Vector2(8, -8);
                     spriteBatch.Draw(UpperRight[x, y].Texture, basePosition + offset + origin,
-                        null, Color.White, UpperRight[x, y].Rotation, origin, 1f, SpriteEffects.None, 0f);
+                        null, Color.White, UpperRight[x, y].Rotation, origin, 1f, SpriteEffects.None, priority);
 
                     offset = new Vector2(-8, 8);
                     spriteBatch.Draw(LowerLeft[x, y].Texture, basePosition + offset + origin,
-                        null, Color.White, LowerLeft[x, y].Rotation, origin, 1f, SpriteEffects.None, 0f);
+                        null, Color.White, LowerLeft[x, y].Rotation, origin, 1f, SpriteEffects.None, priority);
                 
                     offset = new Vector2(8, 8);
                     spriteBatch.Draw(LowerRight[x, y].Texture, basePosition + offset + origin,
-                        null, Color.White, LowerRight[x, y].Rotation, origin, 1f, SpriteEffects.None, 0f);
+                        null, Color.White, LowerRight[x, y].Rotation, origin, 1f, SpriteEffects.None, priority);
                 }
             }
         }
