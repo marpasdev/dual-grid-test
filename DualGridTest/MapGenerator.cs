@@ -9,8 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 namespace DualGridTest
 {
     public static class MapGenerator
-    {
-        
+    {        
         public static void GenerateMap(TileGrid grid)
         {
             Random random = new Random();
@@ -23,15 +22,17 @@ namespace DualGridTest
             }
         }
 
-        public static void Draw(SpriteBatch spriteBatch, TileGrid grid, TextureSet[] textures)
+        public static RenderGrid CalculateMap(TileGrid grid, TextureSet[] textures)
         {
+            RenderGrid renderGrid = new RenderGrid(grid.Width, grid.Height, grid.TileSize);
+
             for (int y = 0; y < grid.Height; y++)
             {
                 for (int x = 0; x < grid.Width; x++)
                 {
                     #region vars
                     TileType type = grid.Tiles[x, y];
-                    Vector2 position = new Vector2(x, y) * 16;
+                    //Vector2 position = new Vector2(x, y) * 16;
                     Texture2D texture = null;
                     float rotation = 0f;
                     #endregion
@@ -126,6 +127,8 @@ namespace DualGridTest
                     {
                         texture = textures[(int)type].Joint;
                         rotation = MathHelper.Pi / 2;
+                        // if n and w are same type and their type > this type
+                        //draw convex instead
                     }
                     else if (n && w && !nw)
                     {
@@ -147,8 +150,14 @@ namespace DualGridTest
                     }
 
                     if (texture != null)
+                    {
+                        /*
                          spriteBatch.Draw(texture, position + new Vector2(-8f, -8f) + 8 * Vector2.One, null, Color.White,
-                        rotation, 8 * Vector2.One, 1f, SpriteEffects.None, 0f);
+                        rotation, 8 * Vector2.One, 1f, SpriteEffects.None, 0f);*/
+
+                        renderGrid.UpperLeft[x, y] = new RenderTile(texture, rotation);
+                    }
+
                     #endregion
 
                     #region upper_right
@@ -191,8 +200,12 @@ namespace DualGridTest
                     }
 
                     if (texture != null)
-                         spriteBatch.Draw(texture, position + new Vector2(8, -8) + 8 * Vector2.One, null, Color.White,
-                        rotation, 8 * Vector2.One, 1f, SpriteEffects.None, 0f);
+                    {
+                         /*spriteBatch.Draw(texture, position + new Vector2(8, -8) + 8 * Vector2.One, null, Color.White,
+                        rotation, 8 * Vector2.One, 1f, SpriteEffects.None, 0f);*/
+                        
+                        renderGrid.UpperRight[x, y] = new RenderTile(texture, rotation);
+                    }
                     #endregion
 
                     #region lower_left
@@ -238,8 +251,12 @@ namespace DualGridTest
                     }
 
                     if (texture != null)
-                         spriteBatch.Draw(texture, position + new Vector2(-8, 8) + 8 * Vector2.One, null, Color.White,
-                        rotation, 8 * Vector2.One, 1f, SpriteEffects.None, 0f);
+                    {
+                        /* spriteBatch.Draw(texture, position + new Vector2(-8, 8) + 8 * Vector2.One, null, Color.White,
+                        rotation, 8 * Vector2.One, 1f, SpriteEffects.None, 0f);*/
+
+                        renderGrid.LowerLeft[x, y] = new RenderTile(texture, rotation);
+                    }
                     #endregion
 
                     #region lower_right
@@ -285,13 +302,19 @@ namespace DualGridTest
                     }
 
                     if (texture != null)
-                         spriteBatch.Draw(texture, position + new Vector2(8, 8) + 8 * Vector2.One, null, Color.White,
-                         rotation, 8 * Vector2.One, 1f, SpriteEffects.None, 0f);
+                    {
+                         /*spriteBatch.Draw(texture, position + new Vector2(8, 8) + 8 * Vector2.One, null, Color.White,
+                         rotation, 8 * Vector2.One, 1f, SpriteEffects.None, 0f);*/
+
+                        renderGrid.LowerRight[x, y] = new RenderTile(texture, rotation);
+                    }
                     #endregion
 
                      //if (x >= 3 && y >= 3) return; // testing
                 }
             }
+
+            return renderGrid;
         }
     }
 }

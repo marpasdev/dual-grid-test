@@ -3,7 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33103.184
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DualGridTest", "DualGridTest\DualGridTest.csproj", "{3C8B9F00-1F42-4907-96C5-C8378AA20973}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DualGridTest", "DualGridTest\DualGridTest.csproj", "{3C8B9F00-1F42-4907-96C5-C8378AA20973}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{09ECA484-26DE-4CA6-8698-282D42BC77C9}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

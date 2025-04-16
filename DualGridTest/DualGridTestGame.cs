@@ -10,6 +10,7 @@ namespace DualGridTest
         private SpriteBatch spriteBatch;
 
         TileGrid grid;
+        RenderGrid renderGrid;
 
         TextureSet[] textures;
 
@@ -51,6 +52,8 @@ namespace DualGridTest
 
             textures[0] = dirt;
             textures[1] = grass;
+
+            renderGrid = MapGenerator.CalculateMap(grid, textures);
         }
 
         protected override void Update(GameTime gameTime)
@@ -68,7 +71,7 @@ namespace DualGridTest
             spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend, SamplerState.PointClamp,
                 null, null, null, Matrix.CreateScale(2.0f));
 
-            MapGenerator.Draw(spriteBatch, grid, textures);
+            renderGrid.Draw(spriteBatch);
 
             spriteBatch.End();
 
