@@ -18,10 +18,12 @@ namespace DualGridTest
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            IsMouseVisible = true;
             graphics.PreferredBackBufferWidth = 1280;
             graphics.PreferredBackBufferHeight = 720;
             graphics.ApplyChanges();
-            IsMouseVisible = true;
+            
+            Window.AllowUserResizing = true;
         }
 
         protected override void Initialize()
@@ -36,7 +38,7 @@ namespace DualGridTest
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            textures = new TextureSet[2];
+            textures = new TextureSet[3];
             TextureSet dirt = new TextureSet(
                 Content.Load<Texture2D>("dirt_full"),
                 Content.Load<Texture2D>("dirt_half"),
@@ -53,8 +55,33 @@ namespace DualGridTest
                 Content.Load<Texture2D>("grass_concave")
                 );
 
-            textures[0] = dirt;
-            textures[1] = grass;
+            TextureSet flowergrass = new TextureSet(
+                Content.Load<Texture2D>("flowergrass_full"),
+                Content.Load<Texture2D>("flowergrass_half"),
+                Content.Load<Texture2D>("flowergrass_joint"),
+                Content.Load<Texture2D>("flowergrass_convex"),
+                Content.Load<Texture2D>("flowergrass_concave")
+                );
+
+            TextureSet darkgrass = new TextureSet(
+                Content.Load<Texture2D>("darkgrass_full"),
+                Content.Load<Texture2D>("darkgrass_half"),
+                Content.Load<Texture2D>("darkgrass_joint"),
+                Content.Load<Texture2D>("darkgrass_convex"),
+                Content.Load<Texture2D>("darkgrass_concave")
+                );
+
+            TextureSet path = new TextureSet(
+                Content.Load<Texture2D>("path_full"),
+                Content.Load<Texture2D>("path_half"),
+                Content.Load<Texture2D>("path_joint"),
+                Content.Load<Texture2D>("path_convex"),
+                Content.Load<Texture2D>("path_concave")
+                );
+
+            textures[0] = path;
+            textures[1] = darkgrass;
+            textures[2] = null;
 
             renderGrid = MapGenerator.CalculateMap(grid, textures);
         }
